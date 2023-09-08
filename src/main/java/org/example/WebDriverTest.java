@@ -62,9 +62,9 @@ public class WebDriverTest {
 
         //ждем
         //время ожидания появления элементов мс
-        driver.manage().timeouts().implicitlyWait( Duration.ofSeconds( 10 ) );
+        // driver.manage().timeouts().implicitlyWait( Duration.ofSeconds( 10 ) );
         //время ожидания загрузки страницы мс
-        driver.manage().timeouts().pageLoadTimeout( Duration.ofSeconds( 10 ) );
+       // driver.manage().timeouts().pageLoadTimeout( Duration.ofSeconds( 10 ) );
 
 
         //    В поисковую строку ввести ОТУС
@@ -82,8 +82,9 @@ public class WebDriverTest {
         new WebDriverWait( driver, Duration.ofSeconds( 10 ) ).until( ExpectedConditions.visibilityOf( driver.findElement(  By.cssSelector("#r1-0 > div.ikg2IXiCD14iVX7AdZo1 > h2 > a > span")) ));
 
         //    Проверить что в поисковой выдаче первый результат Онлайн‑курсы для профессионалов, дистанционное обучение
-       // String text2 = "Онлайн‑курсы для профессионалов, дистанционное обучение современным ...";
-        String text2 = "Otus - Онлайн-курсы Для Профессионалов";
+        String text2 = "Онлайн‑курсы для профессионалов, дистанционное обучение современным ...";
+        //String text2 = "Otus: Онлайн-курсы для ррофессионалов";
+
         Assertions.assertEquals(text, text2);
     }
 
@@ -129,15 +130,16 @@ public class WebDriverTest {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments( "--start-maximized" );
 
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(chromeOptions);
 
         driver.get( " https://otus.ru" );
         auth();
         BasicConfigurator.configure();
         log.info( "LOG STARTED" );
 
-        driver.manage().getCookies();
-        System.out.println(driver.manage().getCookies());
+        //driver.manage().getCookies();
+        //System.out.println(driver.manage().getCookies());
+        log.trace( driver.manage().getCookies() );
 
     }
 
